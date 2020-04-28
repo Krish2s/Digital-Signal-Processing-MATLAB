@@ -1,0 +1,28 @@
+clc;close all;clear all;
+%% ------------------------------------------------------------------------
+disp('Spectrum Analysis of DFT')
+disp('Tarun Shrivastava - TETA14')
+disp('Execution date - 24 Jan,2020')
+%% --------------------Implementation of formula for DFT-------------------
+x=[1 1 1 1];
+subplot(3,3,1)
+stem(x)
+grid on
+for i=2:1:9;
+    N=2^i  ;
+% N=input('Enter no. of DFT points');      % N=4;
+% x=input('Enter DFT samples');            %x=[1 1 1 1];
+    n=[0:1:(N-1)];
+    k=[0:1:(N-1)];
+    l=length(x);
+    if(N>l)
+        x=[x zeros(1,(N-l))];
+    elseif(N<l)
+        x=x(1:N);
+    end
+    w=exp((-1j*2*pi*n'*k)/N);
+    X=w*x';
+    subplot(3,3,i)
+    stem(X)
+    grid on    
+end
